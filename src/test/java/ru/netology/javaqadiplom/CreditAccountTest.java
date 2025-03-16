@@ -163,10 +163,12 @@ public class CreditAccountTest {
     @Test
     void shouldNoInterestChargedNegativeBalance() {
         CreditAccount account = new CreditAccount(
-                -200,
+                0,
                 5_000,
                 15
         );
+
+        account.pay(200);
 
         Assertions.assertEquals(-30, account.yearChange()); // 15% от -200 = -30
     }
