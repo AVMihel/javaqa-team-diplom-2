@@ -66,8 +66,13 @@ public class SavingAccountTest {
                 rate
         );
 
-        account.pay(amount);
-        Assertions.assertEquals(initialBalance - amount, account.getBalance());
+        boolean result = account.pay(amount);
+
+        Assertions.assertAll(
+                () -> assertEquals(initialBalance - amount, account.getBalance()),
+                () -> assertTrue(result)
+        );
+
     }
 
     @ParameterizedTest  // Негативные тесты на оплату покупки
@@ -85,8 +90,12 @@ public class SavingAccountTest {
                 rate
         );
 
-        account.pay(amount);
-        Assertions.assertEquals(initialBalance, account.getBalance());
+        boolean result = account.pay(amount);
+
+        Assertions.assertAll(
+                () -> assertEquals(initialBalance, account.getBalance()),
+                () -> assertFalse(result)
+        );
     }
 
     @ParameterizedTest  // Позитивные тесты на поплнение баланса
@@ -102,8 +111,13 @@ public class SavingAccountTest {
                 rate
         );
 
-        account.add(amount);
-        Assertions.assertEquals(initialBalance + amount, account.getBalance());
+        boolean result = account.add(amount);
+
+        Assertions.
+                assertAll(
+                        () -> assertEquals(initialBalance + amount, account.getBalance()),
+                        () -> assertTrue(result)
+                );
     }
 
     @ParameterizedTest  // Негативные тесты на поплнение баланса
@@ -120,8 +134,12 @@ public class SavingAccountTest {
                 rate
         );
 
-        account.add(amount);
-        Assertions.assertEquals(initialBalance, account.getBalance());
+        boolean result = account.add(amount);
+
+        Assertions.assertAll(
+                () -> assertEquals(initialBalance, account.getBalance()),
+                () -> assertFalse(result)
+        );
     }
 
     @Test
