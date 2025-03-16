@@ -182,4 +182,33 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(0, account.yearChange()); // Проценты не начисляются при нулевом балансе
     }
+
+    // Проверка на исключение при отрицательном начальном балансе
+    @Test
+    void shouldConstructorNegativeBalance() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            new CreditAccount(
+                    -1_000,
+                    5_000,
+                    15
+            );
+        });
+
+        Assertions.assertEquals("Начальный баланс не может быть отрицательным, а у вас: -1000", exception.getMessage());
+    }
+
+
+    // Проверка на исключение при отрицательном лимите
+    @Test
+    void shouldConstructorInvalidCreditLimit() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            new CreditAccount(
+                    1_000,
+                    -5_000,
+                    15
+            );
+        });
+
+        Assertions.assertEquals("Кредитный лимит не может быть отрицательным, а у вас: -5000", exception.getMessage());
+    }
 }
