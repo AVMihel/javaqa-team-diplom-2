@@ -24,7 +24,7 @@ public class SavingAccountTest {
                 rate
         );
 
-       Assertions.assertAll(
+        Assertions.assertAll(
                 () -> assertEquals(initialBalance, account.getBalance()),
                 () -> assertEquals(minBalance, account.getMinBalance()),
                 () -> assertEquals(maxBalance, account.getMaxBalance()),
