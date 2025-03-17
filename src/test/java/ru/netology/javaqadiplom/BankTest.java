@@ -225,13 +225,13 @@ public class BankTest {
 
         Account credit = new CreditAccount(
                 0,
-                5_000,
+                7_000,
                 15
         );
 
         Bank bank = new Bank();
 
-        boolean result = bank.transfer(credit, saving, 6_000);
+        boolean result = bank.transfer(saving, credit, 6_000);
 
         Assertions.assertAll(
                 () -> assertEquals(7_000, saving.getBalance()),
