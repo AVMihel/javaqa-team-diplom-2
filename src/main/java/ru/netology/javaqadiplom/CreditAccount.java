@@ -96,7 +96,7 @@ public class CreditAccount extends Account {
         if (balance >= 0) {
             return 0;
         }
-        return balance / 100 * rate;
+        return balance * rate / 100;
     }
 
     public int getCreditLimit() {

@@ -213,4 +213,17 @@ public class CreditAccountTest {
 
         Assertions.assertEquals("Кредитный лимит не может быть отрицательным, а у вас: -5000", exception.getMessage());
     }
+
+    @Test
+    void shouldGivePercentRoundingValueTest() {
+        CreditAccount account = new CreditAccount(
+                0,
+                5_000,
+                80
+        );
+
+        account.pay(99);
+
+        Assertions.assertEquals(-79, account.yearChange());
+    }
 }
