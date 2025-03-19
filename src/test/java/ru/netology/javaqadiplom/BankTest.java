@@ -69,4 +69,20 @@ public class BankTest {
         Assertions.assertEquals(1000, from.getBalance()); // Баланс не должен измениться
         Assertions.assertEquals(500, to.getBalance()); // Баланс не должен измениться
     }
+
+    @Test
+    void shouldTransferCannotReplenish() {
+        Bank bank = new Bank();
+        Account from = new Account();
+        Account to = new Account();
+
+        from.balance = 1000;
+        to.balance = 800;
+
+        boolean result = bank.transfer(from, to, 300);
+
+        Assertions.assertFalse(result); // Операция не должна пройти
+        Assertions.assertEquals(1000, from.getBalance()); // Баланс не должен измениться
+        Assertions.assertEquals(800, to.getBalance()); // Баланс не должен измениться
+    }
 }
