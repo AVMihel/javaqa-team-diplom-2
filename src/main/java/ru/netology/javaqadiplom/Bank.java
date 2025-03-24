@@ -18,19 +18,15 @@ public class Bank {
         if (amount <= 0) {
             return false;
         }
-        if (from.getBalance() < amount) {
+        if (from.pay(amount)) {
+            if (to.add(amount)) {
+                return true;
+            } else {
+                from.add(amount);
+                return false;
+            }
+        } else {
             return false;
         }
-        if (!canReplenish(to, amount)) {
-            return false;
-        }
-
-        from.balance -= amount;
-        to.balance += amount;
-        return true;
-    }
-
-    private boolean canReplenish(Account account, int amount) {
-        return account.getBalance() + amount <= 1000;
     }
 }
